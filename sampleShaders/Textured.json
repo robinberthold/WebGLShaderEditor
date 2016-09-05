@@ -1,0 +1,6 @@
+{
+	"name": "Textured",
+	"vs": "attribute vec3 aPosition;\r\nattribute vec2 aTextureCoord;\r\n\r\nuniform mat4 modelViewMatrix;\r\nuniform mat4 projectionMatrix;\r\nuniform mat3 normalMatrix;\r\n\r\nvarying vec2 vTextureCoord;\r\n\r\nvoid main(void) {\r\n\t// Return the transformed and projected vertex value\r\n\tgl_Position = projectionMatrix * modelViewMatrix * vec4(aPosition, 1.0);\r\n\tvTextureCoord = aTextureCoord;\r\n}",
+	"fs": "precision mediump float;\r\nuniform sampler2D uSampler;\r\n\r\nvarying vec2 vTextureCoord;\r\n\r\nvoid main()\r\n{\r\n  gl_FragColor = texture2D(uSampler, vec2(vTextureCoord.s, vTextureCoord.t));\r\n}",
+	"uniforms": []
+}

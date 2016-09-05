@@ -1,0 +1,10 @@
+{
+	"models" :
+	{
+		"Capsule" : "capsule.json",
+		"Suzanne high poly" : "suzanne_high.json",
+		"Suzanne low poly" : "suzanne_low.json",
+		"Sphere" : "sphere.json",
+		"Torus" : "torus.json"
+	}
+}

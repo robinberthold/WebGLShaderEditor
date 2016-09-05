@@ -1,0 +1,124 @@
+<meta charset="utf-8">
+<html>
+
+	<head>
+		<title> Shady </title>
+
+		<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="style.css">
+		
+		<script src="./lib/ace/ace.js"></script>
+	    <script src="./lib/gl-matrix-min.js"></script>
+	    <script src="./lib/knockout-3.4.0.js"></script>
+	    <script src="./lib/hammer-2.0.8.js"></script>
+		
+		<script src="./gl.js"></script>
+		<script src="./stateStorage.js"></script>
+		<script src="./modelParser.js"></script>
+		<script src="./modelStorage.js"></script>
+		<script src="./inputHandling.js"></script>
+		<script src="./uniforms.js"></script>
+		
+		<script src="./init.js"></script>
+	</head>
+
+	<script type="text/html" id="uniform-template">
+		<li>
+			<a data-bind="template: { name: template }"></a>
+		</li>
+	</script>
+
+	<script type="text/html" id="immutable-template">
+		Name
+		<a data-bind="text: name" class="uniformValue"></a>
+		<br>
+		Type
+		<a data-bind="text: type" class="uniformValue"></a>
+		<pre data-bind="text: readableValue" class="uniformValue"></pre>
+	</script>
+
+	<script type="text/html" id="mutable-template">
+		<table>
+			<tr>
+				<td class="tdLabel">Name</td>
+				<td><input data-bind="value: name"></input></td>
+			</tr>
+			<tr>
+				<td class="tdLabel">Type</td>
+				<td><select data-bind="value: type , options: $parent.availableUniforms"></select></td>
+			</tr>
+			<tr>
+				<td class="tdLabel">Value</td>
+				<td><input data-bind="value: value" size="12"></input></td>
+			</tr>
+		</table>
+		<button id="btnDeleUniform" data-bind="click: deleteUniform">Remove Uniform</button>
+	</script>
+
+	<body onload="init()">
+		<input id="fileOpenDialog" type="file" style="display: none;" />
+		<div class="applicationPage">
+			<input id="fileName" width="10" placeholder="Shader Name">
+			<button id="btnLoadState"  onclick="fileOpenDialog.click()">Load State</button>
+			<button id="SaveState" onclick="saveState()">Save State</button>
+			<button id="btnAddUniform" onclick="addUniform()">Add Uniform</button>
+			<button id="btnAutoRotate" onclick="toggleAutoRotate()">Toggle Rotation</button>
+			<button id="btnProjection" onclick="toggleProjection()">Orthogonal Projection</button>
+			<table id="applicationTable">
+				<tr>
+					<td valign="top" id="modelCell">
+						<table id="modelTable">
+							<tr>
+								<td>Model</td>
+							</tr>
+							<tr>
+								<td>
+									<select id="selectModel" onchange="changeModel()"></select>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="checkbox" onclick="return false" checked="checked"">Positions (aPosition)
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input id="chkNormals" type="checkbox" onclick="return false">Normals (aNormal)
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input id="chkColors" type="checkbox" onclick="return false">Colors (aColor)
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input id="chkTexture" type="checkbox" onclick="return false">Texture (aTextureCoord)
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td valign="top">
+						<ul id="listUniforms" data-bind="template: { name: 'uniform-template', foreach: uniforms }"></ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<div class="inputColumn">
+			<a>Vertex Shader</a>
+			<div id="vsInput" class="shaderInput"></div>
+			<div id="vsFeedback" class="shaderFeedback"></div>
+		
+			<a>Fragment Shader</a>
+			<div id="fsInput" class="shaderInput"></div>
+			<div id="fsFeedback" class="shaderFeedback"></div>
+			<div id="linkFeedback" class="shaderFeedback"></div>
+		</div>
+		<div class="outputColumn">
+			<a>Render Output</a>
+			<canvas id="renderCanvas"> </canvas>
+		</div>
+	</body>
+</html>

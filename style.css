@@ -1,0 +1,85 @@
+body {
+	font-family: 'Hack', 'Droid Sans Mono', 'Source Code Pro', 'Courier New, Courier, monospace', sans-serif;
+	margin: 0px;
+	padding: 20px;
+	background-color: #1E1E1E;
+	color: white;
+}
+
+.stageTitle {
+	vertical-align: top;
+}
+
+.inputColumn {
+	float: left;
+	width: calc(50% - 10px);
+	height: 75%;
+}
+
+.outputColumn {
+	float: right;
+	width: calc(50% - 10px);
+	height: calc(90% - 3 * 25px);
+}
+
+.shaderInput {
+	height: calc(55% - 3 * 30px);
+}
+
+.shaderFeedback {
+	width: 100%;
+	height: 25px;
+}
+
+.floatInput {
+	width: 15px;
+}
+
+.uniformValue {
+	color: #B5B5B5;
+}
+
+#renderCanvas {
+	width: 100%;
+	height: 80%;
+	box-sizing: border-box;
+}
+
+#applicationTable {
+	width: 100%;
+}
+
+#modelTable {
+	background-color: #333333;
+	width: 280px;
+	height: 180px;
+	margin: 0px;
+}
+
+#modelCell {
+	width: 280px;
+}
+
+#listUniforms {
+	background-color: #333333;
+	overflow-x: auto;
+	overflow-y: hidden;
+	height: 180px;
+	width: calc(100% - 100px);
+	white-space: nowrap;
+}
+
+ul li {
+	display: table-cell;
+	border-right:1px solid white;
+	display:inline-block;
+	list-style: none;
+	padding-left: 10px;
+	padding-right:10px;
+	vertical-align: top;
+	height: 120px;
+}
+
+table, td {
+	padding: 3px;
+}

@@ -1,0 +1,6 @@
+{
+	"name": "Depth",
+	"vs": "attribute vec3 aPosition;\r\n\r\nuniform mat4 modelViewMatrix;\r\nuniform mat4 projectionMatrix;\r\nuniform mat3 normalMatrix;\r\n\r\nvarying vec3 vPosition;\r\n\r\nvoid main(void) {\r\n\t// Return the transformed and projected vertex value\r\n\tgl_Position = projectionMatrix * modelViewMatrix * vec4(aPosition, 1.0);\r\n\t\r\n\tvPosition = (modelViewMatrix * vec4(aPosition, 1.0)).xyz;\r\n}",
+	"fs": "precision mediump float;\r\nvarying vec3 vPosition;\r\n\r\nvoid main()\r\n{\r\n  float depth = 1.0 + (vPosition.z / 5.0);\r\n  gl_FragColor = vec4(depth, depth, depth, 1);\r\n}",
+	"uniforms": []
+}

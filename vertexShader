@@ -1,0 +1,15 @@
+attribute vec3 aPosition;
+attribute vec3 aNormal;
+
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+uniform mat3 normalMatrix;
+
+varying vec3 vNormal;
+
+void main(void) {
+	// Return the transformed and projected vertex value
+	gl_Position = projectionMatrix * modelViewMatrix * vec4(aPosition, 1.0);
+
+	vNormal = normalize(normalMatrix * aNormal);
+}

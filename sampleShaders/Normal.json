@@ -1,0 +1,6 @@
+{
+	"name": "Normal",
+	"vs": "attribute vec3 aPosition;\r\nattribute vec3 aNormal;\r\n\r\nuniform mat4 modelViewMatrix;\r\nuniform mat4 projectionMatrix;\r\nuniform mat3 normalMatrix;\r\n\r\nvarying vec3 vNormal;\r\n\r\nvoid main(void) {\r\n\t// Return the transformed and projected vertex value\r\n\tgl_Position = projectionMatrix * modelViewMatrix * vec4(aPosition, 1.0);\r\n\r\n\tvNormal = normalize(normalMatrix * aNormal);\r\n}",
+	"fs": "precision mediump float;\r\nvarying vec3 vNormal;\r\n\r\nvoid main()\r\n{\r\n  gl_FragColor = vec4(vNormal, 1);\r\n}",
+	"uniforms": []
+}
